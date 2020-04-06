@@ -1,0 +1,101 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp2.0</TargetFramework>
+        <RuntimeIdentifier>cosmos</RuntimeIdentifier>
+        <SelfContained>True</SelfContained>
+        <BinFormat>Elf</BinFormat>
+        <StackCorruptionDetectionEnabled>True</StackCorruptionDetectionEnabled>
+        <StackCorruptionDetectionLevel>MethodFooters</StackCorruptionDetectionLevel>
+        <Deployment>ISO</Deployment>
+        <DebugEnabled>True</DebugEnabled>
+        <DebugMode>Source</DebugMode>
+        <IgnoreDebugStubAttribute>False</IgnoreDebugStubAttribute>
+        <TraceAssemblies>User</TraceAssemblies>
+        <VMwareEdition>Workstation</VMwareEdition>
+        <VMware_StackCorruptionDetectionEnabled>True</VMware_StackCorruptionDetectionEnabled>
+        <VMware_StackCorruptionDetectionLevel>MethodFooters</VMware_StackCorruptionDetectionLevel>
+        <VMware_Description>Use VMware Player or Workstation to deploy and debug.</VMware_Description>
+        <VMware_Deployment>ISO</VMware_Deployment>
+        <VMware_Launch>VMware</VMware_Launch>
+        <VMware_DebugEnabled>False</VMware_DebugEnabled>
+        <VMware_DebugMode>Source</VMware_DebugMode>
+        <VMware_IgnoreDebugStubAttribute>False</VMware_IgnoreDebugStubAttribute>
+        <VMware_CosmosDebugPort>Serial: COM1</VMware_CosmosDebugPort>
+        <VMware_VisualStudioDebugPort>Pipe: Cosmos\Serial</VMware_VisualStudioDebugPort>
+        <VMware_PxeInterface>192.168.0.8</VMware_PxeInterface>
+        <VMware_VMwareEdition>Workstation</VMware_VMwareEdition>
+        <VMware_TraceAssemblies>User</VMware_TraceAssemblies>
+        <VMware_EnableGDB>False</VMware_EnableGDB>
+        <VMware_StartCosmosGDB>False</VMware_StartCosmosGDB>
+        <IntelEdison_StackCorruptionDetectionEnabled>True</IntelEdison_StackCorruptionDetectionEnabled>
+        <IntelEdison_StackCorruptionDetectionLevel>MethodFooters</IntelEdison_StackCorruptionDetectionLevel>
+        <IntelEdison_Description>Connect to Intel Edison device to deploy and debug.</IntelEdison_Description>
+        <IntelEdison_Deployment>BinaryImage</IntelEdison_Deployment>
+        <IntelEdison_Launch>IntelEdison</IntelEdison_Launch>
+        <IntelEdison_DebugEnabled>False</IntelEdison_DebugEnabled>
+        <IntelEdison_DebugMode>Source</IntelEdison_DebugMode>
+        <IntelEdison_IgnoreDebugStubAttribute>False</IntelEdison_IgnoreDebugStubAttribute>
+        <IntelEdison_CosmosDebugPort>Serial: COM1</IntelEdison_CosmosDebugPort>
+        <IntelEdison_VisualStudioDebugPort>Pipe: Cosmos\Serial</IntelEdison_VisualStudioDebugPort>
+        <IntelEdison_PxeInterface>192.168.0.8</IntelEdison_PxeInterface>
+        <IntelEdison_VMwareEdition>Workstation</IntelEdison_VMwareEdition>
+        <IntelEdison_TraceAssemblies>User</IntelEdison_TraceAssemblies>
+        <IntelEdison_EnableGDB>False</IntelEdison_EnableGDB>
+        <IntelEdison_StartCosmosGDB>False</IntelEdison_StartCosmosGDB>
+        <ISO_StackCorruptionDetectionEnabled>True</ISO_StackCorruptionDetectionEnabled>
+        <ISO_StackCorruptionDetectionLevel>MethodFooters</ISO_StackCorruptionDetectionLevel>
+        <ISO_Description>Creates a bootable ISO image which can be burned to a DVD. After running the selected project, an explorer window will open containing the ISO file. The ISO file can then be burned to a CD or DVD and used to boot a physical or virtual system.</ISO_Description>
+        <ISO_Deployment>ISO</ISO_Deployment>
+        <ISO_Launch>None</ISO_Launch>
+        <ISO_DebugEnabled>False</ISO_DebugEnabled>
+        <ISO_DebugMode>Source</ISO_DebugMode>
+        <ISO_IgnoreDebugStubAttribute>False</ISO_IgnoreDebugStubAttribute>
+        <ISO_CosmosDebugPort>Serial: COM1</ISO_CosmosDebugPort>
+        <ISO_VisualStudioDebugPort>Pipe: Cosmos\Serial</ISO_VisualStudioDebugPort>
+        <ISO_PxeInterface>192.168.0.8</ISO_PxeInterface>
+        <ISO_VMwareEdition>Workstation</ISO_VMwareEdition>
+        <ISO_TraceAssemblies>User</ISO_TraceAssemblies>
+        <ISO_EnableGDB>False</ISO_EnableGDB>
+        <ISO_StartCosmosGDB>False</ISO_StartCosmosGDB>
+        <USB_StackCorruptionDetectionEnabled>True</USB_StackCorruptionDetectionEnabled>
+        <USB_StackCorruptionDetectionLevel>MethodFooters</USB_StackCorruptionDetectionLevel>
+        <USB_Description>Makes a USB device such as a flash drive or external hard disk bootable.</USB_Description>
+        <USB_Deployment>USB</USB_Deployment>
+        <USB_Launch>None</USB_Launch>
+        <USB_DebugEnabled>False</USB_DebugEnabled>
+        <USB_DebugMode>Source</USB_DebugMode>
+        <USB_IgnoreDebugStubAttribute>False</USB_IgnoreDebugStubAttribute>
+        <USB_CosmosDebugPort>Serial: COM1</USB_CosmosDebugPort>
+        <USB_VisualStudioDebugPort>Pipe: Cosmos\Serial</USB_VisualStudioDebugPort>
+        <USB_PxeInterface>192.168.0.8</USB_PxeInterface>
+        <USB_VMwareEdition>Workstation</USB_VMwareEdition>
+        <USB_TraceAssemblies>User</USB_TraceAssemblies>
+        <USB_EnableGDB>False</USB_EnableGDB>
+        <USB_StartCosmosGDB>False</USB_StartCosmosGDB>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <EnableGDB>False</EnableGDB>
+        <StartCosmosGDB>False</StartCosmosGDB>
+        <VisualStudioDebugPort>Pipe: Cosmos\Serial</VisualStudioDebugPort>
+        <CosmosDebugPort>Serial: COM1</CosmosDebugPort>
+        <Launch>None</Launch>
+        <Profile>ISO</Profile>
+        <Description>Creates a bootable ISO image which can be burned to a DVD. After running the selected project, an explorer window will open containing the ISO file. The ISO file can then be burned to a CD or DVD and used to boot a physical or virtual system.</Description>
+        <PxeInterface>192.168.0.8</PxeInterface>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+      <Optimize>false</Optimize>
+      <DebugEnabled>False</DebugEnabled>
+      <DebugCom>1</DebugCom>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Cosmos.Build" Version="0-*" NoWarn="NU1604" />
+        <PackageReference Include="Cosmos.Debug.Kernel" Version="0-*" NoWarn="NU1604" />
+        <PackageReference Include="Cosmos.System2" Version="0-*" NoWarn="NU1604" />
+    </ItemGroup>
+
+</Project>

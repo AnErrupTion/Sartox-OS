@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29911.84
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SartoxOS", "SartoxOS\SartoxOS.csproj", "{A0F51AD8-BFDF-446C-B55A-9958DE2A8052}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A0F51AD8-BFDF-446C-B55A-9958DE2A8052}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0F51AD8-BFDF-446C-B55A-9958DE2A8052}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0F51AD8-BFDF-446C-B55A-9958DE2A8052}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0F51AD8-BFDF-446C-B55A-9958DE2A8052}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EB6EF1BC-6F00-4F19-85B4-B8932984CEE9}
+	EndGlobalSection
+EndGlobal

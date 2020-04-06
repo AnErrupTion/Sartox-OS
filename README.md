@@ -14,3 +14,7 @@ And now, just play the virtual machine and you're done! You can now enjoy Sartox
 
 # Compiling it
 Compiling it is easy. You'll have to download Visual Studio 2019, and install the .NET development workload. That's it. Now, launch the "Sartox OS.sln" file, wait for the NuGet packages to be restored, and boom! You can now modify Sartox OS as you wish.
+
+# Thanks
+Thanks to :
+- The [Aura OS project](https://github.com/aura-systems/Aura-Operating-System) for some parts of the project!

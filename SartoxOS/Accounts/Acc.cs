@@ -7,8 +7,8 @@ namespace SartoxOS.Accounts
 {
     public class Acc
     {
-        public string Name;
-        public string Password;
+        private string Name;
+        private string Password;
 
         public Acc(string Name, string Password)
         {
@@ -20,7 +20,7 @@ namespace SartoxOS.Accounts
         {
             return Name;
         }
-        
+
         public void Create()
         {
             string accPath = Reference.RootPath + @"Accs\" + Name + ".txt";

@@ -5,6 +5,7 @@ using System.IO;
 using SartoxOS.Applications;
 using Cosmos.Core;
 using SartoxOS.Errors;
+using Sys = Cosmos.System;
 
 namespace SartoxOS.Commands
 {
@@ -22,7 +23,7 @@ namespace SartoxOS.Commands
 
                 if (cmd == "help")
                 {
-                    ColorConsole.WriteLine(ConsoleColor.White, "help - Shows all commands (this one).\ntime - Shows the current date and time.\ngui - Shows a nice GUI.\nstop - Shuts down kernel.\nreboot - Reboots kernel.\ngetmem - Gets the amount of used and total memory.\ntextpad [file] - The official text editor (read-only) for Sartox OS where [file] is the file to read. If not set, the user will be asked for the file to read.\ncd - Changes current directory.\nls - Lists all files and directories of the current directory.\ncls - Clears the console.\nabout - Shows useful informations about Sartox OS.\nmkdir <directory> - Creates a directory where <directory> is the name of the directory.\nmk <file> - Creates a file where <file> is the name of the file.\nrm <file> - Removes the specified file.\nrmdir <directory> - Removes the specified directory. It's recursive.\nmove <source file/directory> <dest file/directory> - Moves a file or directory from the (source) to the (dest)ination.\ncopy <source file> <dest file> - Copies a file from the (source) to the (dest)ination. It overwrites the destination file (if it exists).");
+                    ColorConsole.WriteLine(ConsoleColor.White, "help - Shows all commands (this one).\ntime - Shows the current date and time.\ngui - Shows a nice GUI.\nstop - Shuts down kernel.\nreboot - Reboots kernel.\ngetmem - Gets the amount of used and total memory.\ntextpad [file] - The official text editor (read-only) for Sartox OS where [file] is the file to read. If not set, the user will be asked for the file to read.\ncd - Changes current directory.\nls - Lists all files and directories of the current directory.\ncls - Clears the console.\nabout - Shows useful informations about Sartox OS.\nmkdir <directory> - Creates a directory where <directory> is the name of the directory.\nmk <file> - Creates a file where <file> is the name of the file.\nrm <file> - Removes the specified file.\nrmdir <directory> - Removes the specified directory. It's recursive.\nmove <source file/directory> <dest file/directory> - Moves a file or directory from the (source) to the (dest)ination.\ncopy <source file> <dest file> - Copies a file from the (source) to the (dest)ination. It overwrites the destination file (if it exists).\nkeyblang <layout> - Changes the current keyboard layout where <layout> is the new keyboard layout. Currently, 3 keyboard layouts are supported : fr_FR (French), en_US (English, the default one) and de (Deutsch).\ncrash - Crashes the OS in a harmless way (throwing a simple Exception).");
                     goto commands;
                 }
                 else if (cmd == "gui") SimpleGui.Init();
@@ -33,7 +34,7 @@ namespace SartoxOS.Commands
                 }
                 else if (cmd == "getmem")
                 {
-                    ColorConsole.WriteLine(ConsoleColor.White, (CPU.GetEndOfKernel() + 1024) / 1048576 + " MB / " + CPU.GetAmountOfRAM() + " MB (used/total)");
+                    ColorConsole.WriteLine(ConsoleColor.White, MemoryManager.UsedMemory().ToString() + " MB / " + MemoryManager.TotalMemory().ToString() + " MB (used / total)");
                     goto commands;
                 }
                 else if (cmd == "textpad")
@@ -46,6 +47,15 @@ namespace SartoxOS.Commands
                 {
                     Textpad.Run(cmd.Split(" ")[1]);
                     Console.ReadKey();
+                    goto commands;
+                }
+                else if (cmd.StartsWith("keyblang "))
+                {
+                    string lang = cmd.Split(" ")[1];
+                    if (lang == "fr_FR") Sys.KeyboardManager.SetKeyLayout(new Sys.ScanMaps.FR_Standard());
+                    else if (lang == "en_US") Sys.KeyboardManager.SetKeyLayout(new Sys.ScanMaps.US_Standard());
+                    else if (lang == "de") Sys.KeyboardManager.SetKeyLayout(new Sys.ScanMaps.DE_Standard());
+                    else ColorConsole.WriteLine(ConsoleColor.Red, "Unknown keyboard layout.");
                     goto commands;
                 }
                 else if (cmd.StartsWith("cd "))
@@ -81,28 +91,44 @@ namespace SartoxOS.Commands
                     goto commands;
                 }
                 else if (cmd == "stop") Power.Shutdown();
-                else if (cmd.StartsWith("mkdir ")) Directory.CreateDirectory(cmd.Split(" ")[1]);
-                else if (cmd.StartsWith("mk ")) File.Create(cmd.Split(" ")[1]);
+                else if (cmd.StartsWith("mkdir "))
+                {
+                    Directory.CreateDirectory(cmd.Split(" ")[1]);
+                    goto commands;
+                }
+                else if (cmd.StartsWith("mk "))
+                {
+                    File.Create(cmd.Split(" ")[1]);
+                    goto commands;
+                }
                 else if (cmd.StartsWith("rm "))
                 {
                     string file = cmd.Split(" ")[1];
                     if (File.Exists(file)) File.Delete(file);
                     else ColorConsole.WriteLine(ConsoleColor.Red, "The specified file doesn't exist.");
+                    goto commands;
                 }
                 else if (cmd.StartsWith("rmdir "))
                 {
                     string dir = cmd.Split(" ")[1];
                     if (Directory.Exists(dir)) Directory.Delete(dir, true);
                     else ColorConsole.WriteLine(ConsoleColor.Red, "The specified directory doesn't exist.");
+                    goto commands;
                 }
                 else if (cmd.StartsWith("move "))
                 {
                     string move = cmd.Split(" ")[1];
                     if (Directory.Exists(move) || File.Exists(move)) Directory.Move(move, cmd.Split(" ")[2]);
                     else ColorConsole.WriteLine(ConsoleColor.Red, "The source directory/file doesn't exist.");
+                    goto commands;
                 }
-                else if (cmd.StartsWith("copy ")) File.Copy(cmd.Split(" ")[1], cmd.Split(" ")[2], true);
+                else if (cmd.StartsWith("copy "))
+                {
+                    File.Copy(cmd.Split(" ")[1], cmd.Split(" ")[2], true);
+                    goto commands;
+                }
                 else if (cmd == "reboot") Power.Restart();
+                else if (cmd == "crash") throw new Exception("Crash initialized by user.");
                 else
                 {
                     ColorConsole.WriteLine(ConsoleColor.Red, "Invalid command.");
@@ -111,8 +137,8 @@ namespace SartoxOS.Commands
             }
             catch (Exception e)
             {
-                Reference.Debugger.Send("ERROR : " + e.Message);
-                ErrorScreen.Init(e.Message);
+                Global.mDebugger.Send("ERROR : " + e.Message + e.HResult.ToString());
+                ErrorScreen.Init(e.Message, e.HResult);
             }
         }
     }

@@ -10,25 +10,25 @@ namespace SartoxOS.Applications
         {
             Console.Clear();
 
-            string curDir = file;
+            lolfile: string curDir = Reference.CurrentDir;
             if (file == null)
             {
-                lolfile: ColorConsole.Write(ConsoleColor.White, "File to read => ");
+                ColorConsole.Write(ConsoleColor.Yellow, "File to read => ");
                 string ftr = Console.ReadLine();
-                curDir = Reference.CurrentDir;
 
                 if (!ftr.Contains(Reference.RootPath)) curDir += @"\" + ftr;
                 else curDir = ftr;
-
-                if (!File.Exists(curDir))
-                {
-                    ColorConsole.WriteLine(ConsoleColor.Red, "File doesn't exist.");
-                    goto lolfile;
-                }
             }
             else
             {
                 if (!file.Contains(Reference.RootPath)) curDir += @"\" + file;
+                else curDir = file;
+            }
+
+            if (!File.Exists(curDir))
+            {
+                ColorConsole.WriteLine(ConsoleColor.Red, "File doesn't exist.");
+                goto lolfile;
             }
 
             string[] lines = File.ReadAllLines(curDir);

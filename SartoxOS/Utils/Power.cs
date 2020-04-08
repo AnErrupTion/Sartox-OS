@@ -7,13 +7,13 @@ namespace SartoxOS.Utils
     {
         public static void Shutdown()
         {
-            Console.WriteLine("Shutting down computer...");
+            ColorConsole.WriteLine(ConsoleColor.Yellow, "Shutting down computer...");
             Sys.Power.Shutdown();
         }
 
         public static void Restart()
         {
-            Console.WriteLine("Rebooting computer...");
+            ColorConsole.WriteLine(ConsoleColor.Yellow, "Rebooting computer...");
             Sys.Power.Reboot();
         }
     }
